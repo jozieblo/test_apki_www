@@ -1,1 +1,1 @@
-print("esttt")
+print("aktualizacja")
