@@ -1,1 +1,1 @@
-print("aktualizacja")
+print("test_listopad")
