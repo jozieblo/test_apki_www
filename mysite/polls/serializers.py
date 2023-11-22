@@ -2,10 +2,11 @@ from rest_framework import serializers
 from .models import Osoba, Stanowisko, plec
 
 
+class StanowiskoModelSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Stanowisko
+        fields = ['nazwa', 'opis']
 
-class StanowiskoSerializer(serializers.Serializer):
-    nazwa = serializers.CharField(required=True)
-    opis = serializers.CharField(required=True)
 
 class OsobaSerializer(serializers.Serializer):
 
