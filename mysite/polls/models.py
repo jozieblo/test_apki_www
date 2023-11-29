@@ -25,7 +25,7 @@ class Osoba(models.Model):
     nazwisko = models.CharField(max_length=70, validators=[validate_alpha])
     plec = models.IntegerField(choices=plec.choices)
     stanowisko = models.ForeignKey(Stanowisko, null=True, blank=True, on_delete=models.SET_NULL)
-    data_dodania = models.DateTimeField(default=timezone.now, validators=[validate_past_date])
+    data_dodania = models.DateField(default=timezone.now, validators=[validate_past_date])
     class Meta:
         ordering= ["nazwisko"]
 

@@ -12,7 +12,7 @@ class OsobaSerializer(serializers.Serializer):
 
     imie = serializers.CharField(required=True)
     nazwisko = serializers.CharField(required=True)
-    plec = serializers.ChoiceField(choices=plec, default=plec[0][0])
+    plec = serializers.ChoiceField(choices=plec)
     stanowisko = serializers.PrimaryKeyRelatedField(queryset=Stanowisko.objects.all())
     data_dodania = serializers.DateField()
 
