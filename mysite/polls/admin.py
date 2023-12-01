@@ -4,7 +4,7 @@ from .models import  Osoba, Stanowisko
 
 
 class OsobaAdmin(admin.ModelAdmin):
-    list_display = ('imie', 'nazwisko', 'plec', 'stanowisko', 'data_dodania')
+    list_display = ('id','imie', 'nazwisko', 'plec', 'stanowisko', 'data_dodania')
     list_filter = ('stanowisko', 'data_dodania')
 
     @admin.display(description='Stanowisko')

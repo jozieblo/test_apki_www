@@ -11,9 +11,11 @@ def validate_alpha(value):
         raise ValidationError('Nazwa może zawierać tylko litery.')
 
 def validate_past_date(value):
-    if value > timezone.now():
+    current_date = timezone.now().date()
+    if value > current_date:
         raise ValidationError('Data dodania nie może być z przyszłości.')
 class Stanowisko(models.Model):
+    id = models.AutoField(primary_key=True)
     nazwa = models.CharField(max_length=50)
     opis = models.CharField(max_length=50, null=True, blank=True)
 
@@ -21,6 +23,7 @@ class Stanowisko(models.Model):
         return f"{self.nazwa}"
 
 class Osoba(models.Model):
+    id = models.AutoField(primary_key=True)
     imie = models.CharField(max_length=50, validators=[validate_alpha])
     nazwisko = models.CharField(max_length=70, validators=[validate_alpha])
     plec = models.IntegerField(choices=plec.choices)
