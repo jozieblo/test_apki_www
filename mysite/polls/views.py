@@ -1,21 +1,26 @@
 from django.http import HttpResponse
 from rest_framework import status
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, authentication_classes, permission_classes
 from rest_framework.response import Response
 from .models import Osoba, Stanowisko
 from .serializers import OsobaModelSerializer, StanowiskoModelSerializer
-
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication
+from rest_framework.permissions import IsAuthenticated
 def index(request):
     return HttpResponse("Hello world!.")
 
 
 @api_view(['GET'])
+@authentication_classes([SessionAuthentication, BasicAuthentication])
+@permission_classes([IsAuthenticated])
 def person_list(request):
     if request.method == 'GET':
         persons = Osoba.objects.all()
         serializer = OsobaModelSerializer(persons, many=True)
         return Response(serializer.data)
 @api_view(['POST'])
+@authentication_classes([SessionAuthentication, BasicAuthentication])
+@permission_classes([IsAuthenticated])
 def person_add(request):
     if request.method == 'POST':
         serializer = OsobaModelSerializer(data=request.data)
@@ -26,6 +31,8 @@ def person_add(request):
 
 
 @api_view(['GET','PUT', 'DELETE'])
+@authentication_classes([SessionAuthentication, BasicAuthentication])
+@permission_classes([IsAuthenticated])
 def person_detail(request, pk):
     try:
         person = Osoba.objects.get(id=pk)
@@ -52,12 +59,16 @@ def person_detail(request, pk):
 
 
 @api_view(['GET'])
+@authentication_classes([SessionAuthentication, BasicAuthentication])
+@permission_classes([IsAuthenticated])
 def stanowisko_list(request):
     if request.method == 'GET':
         stanowiska = Stanowisko.objects.all()
         serializer = StanowiskoModelSerializer(stanowiska, many=True)
         return Response(serializer.data)
 @api_view(['POST'])
+@authentication_classes([SessionAuthentication, BasicAuthentication])
+@permission_classes([IsAuthenticated])
 def stanowisko_add(request):
     if request.method == 'POST':
         serializer = StanowiskoModelSerializer(data=request.data)
@@ -68,6 +79,8 @@ def stanowisko_add(request):
 
 
 @api_view(['GET','PUT', 'DELETE'])
+@authentication_classes([SessionAuthentication, BasicAuthentication])
+@permission_classes([IsAuthenticated])
 def stanowisko_detail(request, pk):
     try:
         stanowisko = Stanowisko.objects.get(id=pk)

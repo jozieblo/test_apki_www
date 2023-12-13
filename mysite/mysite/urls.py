@@ -13,4 +13,6 @@ urlpatterns = [
     path('stanowiska/', views.stanowisko_list),
     path('stanowisko/', views.stanowisko_add),
     path('stanowisko/<int:pk>/', views.stanowisko_detail),
+
+    path('api-auth/', include('rest_framework.urls')),
 ]
